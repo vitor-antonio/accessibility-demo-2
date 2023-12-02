@@ -1,0 +1,100 @@
+<section>
+  <h1>Accessibility Demo</h1>
+
+  <div class="dog-images">
+    <img src="path/to/dog.jpg" alt="A happy dog playing in a park" />
+    <img src="path/to/dog.jpg" alt="Image" />
+  </div>
+
+  <div class="buttons-div">
+    <button
+      (click)="showDogLoveMessage()"
+      aria-label="Show alert"
+      style="border: 2px solid blue"
+    >
+      Show Alert
+    </button>
+    <div class="fake-button" (click)="showDogLoveMessage()">Show Alert</div>
+  </div>
+
+  <div>
+    <p style="color: black; background-color: white">
+      This is easily readable text.
+    </p>
+    <p style="color: gray; background-color: white">Difficult to read text.</p>
+  </div>
+
+  <div>
+    <label
+      for="fullNameInput"
+      id="fullNameLabel"
+      aria-label="Please insert your full name"
+      >Full Name:</label
+    >
+    <input
+      aria-labelledby="fullNameLabel"
+      type="text"
+      id="fullNameInput"
+      aria-required="true"
+      placeholder="Full Name"
+    />
+    <br />
+    <span> Full Name:</span>
+    <input type="text" placeholder="Full Name" />
+  </div>
+
+  <div>
+    <h3>Example of good structure</h3>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <h3>Example of bad structure</h3>
+    <div>
+      <div class="list-container">
+        <span class="list-item"><a href="products.html">Products</a></span>
+        <span class="list-item"><a href="index.html">Home</a></span>
+        <span class="list-item"><a href="contact.html">Contact Us</a></span>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="isShowingModal">
+    <dialog role="alertdialog" #accessibleDialog>
+      <div>
+        <h1>This modal contains some stuff that should get focus.</h1>
+        <form>
+          <p>
+            <label>
+              Type your pet name:
+              <input type="text" placeholder="Pet Name" />
+            </label>
+          </p>
+          <div>
+            <button (click)="closeDialog()" value="cancel" formmethod="dialog">
+              Cancel
+            </button>
+            <button (click)="closeDialog()" id="confirmBtn" value="default">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+  </ng-container>
+
+  <button (click)="openDialog()">Show the dialog</button>
+
+  <Br />
+  <h2>Accessible Radio Buttons</h2>
+  <app-radio-buttons-test
+    [options]="radioOptions"
+    (optionChanged)="onOptionChanged($event)"
+  ></app-radio-buttons-test>
+
+  <p>Selected Option: {{ selectedOption }}</p>
+</section>
