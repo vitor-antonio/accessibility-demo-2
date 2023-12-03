@@ -1,8 +1,7 @@
-<div *ngFor="let option of options">
+<div *ngFor="let option of options" role="radiogroup">
     <label>
       <input
         type="radio"
-        name="radioGroup"
         [value]="option.value"
         [checked]="selectedOption === option.value"
         (change)="onOptionChange(option.value)"

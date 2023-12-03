@@ -1,0 +1,21 @@
+<fieldset>
+  <legend>Album information</legend>
+  <label for="albumsSelect">Album:</label>
+  <select
+    id="albumsSelect"
+    [(ngModel)]="selectedAlbum"
+    aria-controls="albumInfo"
+  >
+    <option value="">Select an album…</option>
+    <option value="rollingStones">Rolling Stones - Exile on Main St</option>
+    <option value="pinkFloyd">Pink Floyd - The Dark Side of the Moon</option>
+    <option value="ledZeppelin">Led Zeppelin - IV</option>
+    <option value="direStraits">Dire Straits - Brothers in Arms</option>
+  </select>
+  <button (click)="renderAlbumInfo()">Go</button>
+</fieldset>
+
+<div role="region" id="albumInfo" aria-live="polite">
+  <h2>{{ albumTitle }}</h2>
+  <p>{{ albumDescription }}</p>
+</div>

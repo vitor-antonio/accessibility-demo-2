@@ -1,42 +1,169 @@
-<form [formGroup]="myForm" (ngSubmit)="submitForm()" role="form">
-  <div>
-    <label for="name">Name:</label>
-    <input
-      type="text"
-      id="name"
-      formControlName="name"
-      aria-labelledby="name-label"
-      aria-describedby="name-error"
-    />
-    <div
-      *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-      id="name-error"
-      role="alert"
-    >
-      <div *ngIf="name?.errors?.['required']">Name is required.</div>
-    </div> 
-  </div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    @if (showFiller) {
+    <p>Lorem, ipsum dolor sit amet consectetur.</p>
+    }
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
 
-  <div>
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      formControlName="email"
-      aria-labelledby="email-label"
-      aria-describedby="email-error"
-    />
-    <div
-      *ngIf="email?.invalid && (email?.dirty || email?.touched)"
-      id="email-error"
-      role="alert"
-    >
-      <div *ngIf="email?.errors?.['required']">Email is required.</div>
-      <div *ngIf="email?.errors?.['email']">
-        Invalid email format.
+  <div class="example-sidenav-content">
+    <div class="main-container">
+      <div id="mainContent">
+        <form [formGroup]="myForm" (ngSubmit)="submitForm()" role="form">
+          <div>
+            <label id="name-label" for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              aria-labelledby="name-label"
+            />
+            <div
+              class="error"
+              *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+              id="name-error"
+              role="alert"
+            >
+              <div class="error" *ngIf="name?.errors?.['required']">
+                Name is required.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label id="email-label" for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              autocomplete="off"
+              formControlName="email"
+              aria-labelledby="email-label"
+            />
+            <div
+              class="error"
+              *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+              id="email-error"
+            >
+              <!-- role="alert" -->
+              <div class="error" *ngIf="email?.errors?.['required']">
+                Email is required.
+              </div>
+              <div class="error" *ngIf="email?.errors?.['email']">
+                Invalid email format.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label id="password-label" for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              aria-labelledby="password-label"
+            />
+            <div
+              *ngIf="password?.errors?.['required'] && password?.touched"
+              class="error"
+            >
+              Password is required.
+            </div>
+            <div
+              *ngIf="password?.errors?.['minlength'] && password?.touched"
+              class="error"
+              role="alert"
+            >
+              Password must be at least 8 characters long.
+            </div>
+            <div
+              *ngIf="password?.errors?.['pattern'] && password?.touched"
+              class="error"
+              role="alert"
+            >
+              Password must contain at least one uppercase letter, one lowercase
+              letter, one number, and one special character.
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button
+              aria-label="Cancel form submission and go to main page"
+              tabindex="0"
+            >
+              Cancel
+            </button>
+            <button
+              aria-label="Initialize progress bar"
+              (click)="simulateProgress()"
+              tabindex="0"
+            >
+              Show Progress
+            </button>
+            <!-- [disabled]="myForm.invalid" -->
+            <button type="submit" [attr.aria-disabled]="myForm.invalid">
+              Submit
+            </button>
+          </div>
+        </form>
+
+        <div class="progress-bar-container">
+          <!-- [attr.aria-valuenow]="progress" -->
+          <!-- role="progressbar" -->
+          <div aria-valuemin="0" aria-valuemax="100" class="progress-bar">
+            <!-- <div class="progress-bar-fill" [style.width.%]="progress">
+              <span class="sr-only">{{ progress }}% Complete</span>
+            </div> -->
+            <progress
+              id="loadinglabel"
+              max="100"
+              [value]="progress"
+              [attr.aria-valuenow]="progress"
+            ></progress>
+            <!-- role="progressbar" -->
+          </div>
+        </div>
+
+        <div>
+          <div
+            *ngIf="loading"
+            role="alert"
+            aria-busy="true"
+            aria-live="assertive"
+          >
+            Loading data...
+          </div>
+
+          <div *ngIf="!loading && progress == 100">
+            <div role="alert" aria-live="polite">
+              This content will appear after i load something
+            </div>
+          </div>
+        </div>
+
+        <div class="dropdown-example-container">
+          <app-dropdown-example></app-dropdown-example>
+        </div>
+
+        <div>
+          <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+          </button>
+        </div>
       </div>
+
+      <!-- <div class="side-container">
+        <button aria-label="toggle side panel" (click)="toggleSidePanel()">
+          Toggle Side Panel
+        </button>
+        <div #sidePanelContent id="sidePanelContent" class="content-panel" [ngClass]="{openPanel: sidePanelVisible}">
+          <h2>SidePanel Content</h2>
+          <button aria-label="close side panel" (click)="toggleSidePanel()">
+            Close Side Panel
+          </button>
+        </div>
+      </div> -->
     </div>
   </div>
-
-  <button type="submit" [disabled]="myForm.invalid">Submit</button>
-</form>
+</mat-drawer-container>

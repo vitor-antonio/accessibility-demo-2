@@ -1,0 +1,42 @@
+/* album-info.component.css */
+
+fieldset {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#albumInfo {
+    margin-top: 20px;
+}
+
+#albumTitle {
+    color: #333;
+}
+
+#albumDescription {
+    margin-top: 10px;
+    color: #555;
+}
+
+small {
+    display: block;
+    margin-top: 20px;
+    color: #777;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
