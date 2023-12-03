@@ -1,12 +1,26 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    @if (showFiller) {
-    <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    }
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+  <mat-drawer #drawer id="mat-drawer" class="example-sidenav" mode="side">
+    <div style="display: flex; flex-direction: column">
+      @if (showFiller) {
+      <p>Lorem, ipsum dolor sit amet consectetur.</p>
+      }
+      <button
+        id="drawerButton"
+        #drawerButton
+        (click)="showFiller = !showFiller"
+        mat-raised-button
+      >
+        Toggle extra text
+      </button>
+      <button
+        id="drawer-button"
+        aria-label="close the side panel"
+        (click)="closeSidePanel(drawer, toggleSidePanelButton)"
+        mat-raised-button
+      >
+        Close side panel
+      </button>
+    </div>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -18,6 +32,7 @@
             <input
               type="text"
               id="name"
+              autofocus
               formControlName="name"
               aria-labelledby="name-label"
             />
@@ -88,16 +103,12 @@
             </div>
           </div>
           <div class="action-buttons">
-            <button
-              aria-label="Cancel form submission and go to main page"
-              tabindex="0"
-            >
+            <button aria-label="Cancel form submission and go to main page">
               Cancel
             </button>
             <button
               aria-label="Initialize progress bar"
               (click)="simulateProgress()"
-              tabindex="0"
             >
               Show Progress
             </button>
@@ -147,7 +158,12 @@
         </div>
 
         <div>
-          <button type="button" mat-button (click)="drawer.toggle()">
+          <button
+            #toggleSidePanelButton
+            type="button"
+            mat-button
+            (click)="toggleSidePanel(drawer, drawerButton)"
+          >
             Toggle sidenav
           </button>
         </div>

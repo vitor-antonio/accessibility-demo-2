@@ -7,26 +7,25 @@ import {
   Validators,
 } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { DropdownExampleComponent } from "../dropdown-example/dropdown-example.component";
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
+import { DropdownExampleComponent } from '../dropdown-example/dropdown-example.component';
 
 @Component({
-    selector: 'app-form-validation-test',
-    standalone: true,
-    templateUrl: './form-validation-test.component.html',
-    styleUrl: './form-validation-test.component.scss',
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatSidenavModule,
-        DropdownExampleComponent
-    ]
+  selector: 'app-form-validation-test',
+  standalone: true,
+  templateUrl: './form-validation-test.component.html',
+  styleUrl: './form-validation-test.component.scss',
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSidenavModule,
+    DropdownExampleComponent,
+  ],
 })
 export class FormValidationTestComponent {
-  @ViewChild('sidePanelContent') sidePanelContent: ElementRef | undefined;
   showFiller = false;
   loading = false;
   sidePanelVisible = true;
@@ -78,16 +77,18 @@ export class FormValidationTestComponent {
     // }, 3000);
   }
 
-  toggleSidePanel() {
-    if (!this.sidePanelContent) return;
-
-    this.sidePanelVisible = !this.sidePanelVisible;
-    console.log(this.sidePanelVisible);
-
-    if (this.sidePanelVisible) {
-      this.sidePanelContent.nativeElement.inert = true;
-    } else {
-      this.sidePanelContent.nativeElement.inert = false;
+  toggleSidePanel(drawer: MatDrawer, drawerButton: MatButton) {
+    drawer.toggle();
+    if (drawer.opened) {
+      drawerButton.focus();
+      setTimeout(() => {
+        drawerButton.focus();
+      }, 100);
     }
+  }
+
+  closeSidePanel(drawer: MatDrawer, toggleSidePanelButton: MatButton) {
+    drawer.close();
+    toggleSidePanelButton.focus();
   }
 }
