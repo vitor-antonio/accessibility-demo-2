@@ -101,14 +101,14 @@
             </div>
           </div>
           <div class="action-buttons">
-            <button aria-label="Cancel form submission and go to main page">
+            <button aria-label="Cancel form submission and go to main page" (click)="router.navigateByUrl('/')">
               Cancel
             </button>
             <button
-              aria-label="Initialize progress bar"
+              aria-label="Load data"
               (click)="simulateProgress()"
             >
-              Show Progress
+              Load data
             </button>
             <!-- [disabled]="myForm.invalid" -->
             <button type="submit" [attr.aria-disabled]="myForm.invalid" [ngClass]="{'disabled-button': myForm.invalid}">
@@ -141,11 +141,11 @@
             aria-busy="true"
             aria-live="assertive"
           >
-            Loading data...
+            Loading data... This might take a while...
           </div>
 
           <div *ngIf="!loading && progress == 100">
-            <div role="alert" aria-live="polite">
+            <div role="alert" aria-live="polite" aria-label="loading complete">
               This content will appear after it was loaded!
             </div>
           </div>

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { DropdownExampleComponent } from '../dropdown-example/dropdown-example.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-validation-test',
@@ -44,6 +45,7 @@ export class FormValidationTestComponent {
   get name() {
     return this.myForm.get('name');
   }
+
   get email() {
     return this.myForm.get('email');
   }
@@ -55,7 +57,7 @@ export class FormValidationTestComponent {
   required: any;
   progress = 0;
 
-  constructor() {}
+  constructor(public router: Router) {}
 
   submitForm() {
     // Handle form submission
