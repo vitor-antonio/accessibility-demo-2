@@ -1,9 +1,8 @@
-<section>
+<section [attr.inert]="isShowingModal ? true : null">
   <h1>Accessibility Demo</h1>
 
   <div class="dog-images">
-    <img src="path/to/dog.jpg" alt="A happy dog playing in a park" />
-    <img src="path/to/dog.jpg" alt="Image" />
+    <img src="../../assets/dog.jpg" alt="A happy dog playing in a park" />
   </div>
 
   <div class="buttons-div">
@@ -63,30 +62,6 @@
     </div>
   </div>
 
-  <ng-container *ngIf="isShowingModal">
-    <dialog role="alertdialog" #accessibleDialog>
-      <div>
-        <h1>This modal contains some stuff that should get focus.</h1>
-        <form>
-          <p>
-            <label>
-              Type your pet name:
-              <input type="text" placeholder="Pet Name" />
-            </label>
-          </p>
-          <div>
-            <button (click)="closeDialog()" value="cancel" formmethod="dialog">
-              Cancel
-            </button>
-            <button (click)="closeDialog()" id="confirmBtn" value="default">
-              Confirm
-            </button>
-          </div>
-        </form>
-      </div>
-    </dialog>
-  </ng-container>
-
   <button (click)="openDialog()">Show the dialog</button>
 
   <Br />
@@ -97,4 +72,34 @@
   ></app-radio-buttons-test>
 
   <p>Selected Option: {{ selectedOption }}</p>
+
+  <div>
+    <a aria-label="Navigate to form example page" href="/formValidationTest"
+      >Form Example Page</a
+    >
+  </div>
 </section>
+
+<ng-container *ngIf="isShowingModal">
+  <dialog role="alertdialog" #accessibleDialog class="myDialog">
+    <div>
+      <h1>This modal contains some stuff that should get focus.</h1>
+      <form>
+        <p>
+          <label>
+            Type your pet name:
+            <input type="text" placeholder="Pet Name" />
+          </label>
+        </p>
+        <div>
+          <button (click)="closeDialog()" value="cancel" formmethod="dialog">
+            Cancel
+          </button>
+          <button (click)="closeDialog()" id="confirmBtn" value="default">
+            Confirm
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</ng-container>

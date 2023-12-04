@@ -77,7 +77,7 @@ export class FormValidationTestComponent {
     // }, 3000);
   }
 
-  toggleSidePanel(drawer: MatDrawer, drawerButton: MatButton) {
+  toggleSidePanel(drawer: MatDrawer, drawerButton: HTMLButtonElement) {
     drawer.toggle();
     if (drawer.opened) {
       drawerButton.focus();
@@ -87,7 +87,7 @@ export class FormValidationTestComponent {
     }
   }
 
-  closeSidePanel(drawer: MatDrawer, toggleSidePanelButton: MatButton) {
+  closeSidePanel(drawer: MatDrawer, toggleSidePanelButton: HTMLButtonElement) {
     drawer.close();
     toggleSidePanelButton.focus();
   }

@@ -32,6 +32,7 @@ export class AccessibilityTestComponent {
     console.log('Opening dialog');
     setTimeout(() => {
       this.accessibleDialog?.nativeElement.show();
+      //this.accessibleDialog?.nativeElement.showModal();
     }, 100);
   }
 

@@ -2,13 +2,12 @@
   <mat-drawer #drawer id="mat-drawer" class="example-sidenav" mode="side">
     <div style="display: flex; flex-direction: column">
       @if (showFiller) {
-      <p>Lorem, ipsum dolor sit amet consectetur.</p>
+      <p role="alert" aria-live="polite">Lorem, ipsum dolor sit amet consectetur.</p>
       }
       <button
         id="drawerButton"
         #drawerButton
         (click)="showFiller = !showFiller"
-        mat-raised-button
       >
         Toggle extra text
       </button>
@@ -16,7 +15,6 @@
         id="drawer-button"
         aria-label="close the side panel"
         (click)="closeSidePanel(drawer, toggleSidePanelButton)"
-        mat-raised-button
       >
         Close side panel
       </button>
@@ -113,7 +111,7 @@
               Show Progress
             </button>
             <!-- [disabled]="myForm.invalid" -->
-            <button type="submit" [attr.aria-disabled]="myForm.invalid">
+            <button type="submit" [attr.aria-disabled]="myForm.invalid" [ngClass]="{'disabled-button': myForm.invalid}">
               Submit
             </button>
           </div>
@@ -148,7 +146,7 @@
 
           <div *ngIf="!loading && progress == 100">
             <div role="alert" aria-live="polite">
-              This content will appear after i load something
+              This content will appear after it was loaded!
             </div>
           </div>
         </div>
@@ -161,7 +159,6 @@
           <button
             #toggleSidePanelButton
             type="button"
-            mat-button
             (click)="toggleSidePanel(drawer, drawerButton)"
           >
             Toggle sidenav

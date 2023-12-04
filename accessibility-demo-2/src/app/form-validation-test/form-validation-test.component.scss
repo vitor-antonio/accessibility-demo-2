@@ -47,7 +47,7 @@ input {
 }
 
 .error {
-    color: red;
+    color: #c40505;
     margin-top: 5px;
     font-weight: bold;
 }
@@ -92,4 +92,9 @@ button:disabled {
 
 .mat-mdc-button:not(:disabled) {
     color: white;
+}
+
+.disabled-button {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
 }
