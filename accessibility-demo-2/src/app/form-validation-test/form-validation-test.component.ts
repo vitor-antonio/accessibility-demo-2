@@ -73,10 +73,6 @@ export class FormValidationTestComponent {
         this.loading = false;
       }
     }, 800);
-
-    // setTimeout(() => {
-    //   this.loading = false;
-    // }, 3000);
   }
 
   toggleSidePanel(drawer: MatDrawer, drawerButton: HTMLButtonElement) {

@@ -2,7 +2,9 @@
   <mat-drawer #drawer id="mat-drawer" class="example-sidenav" mode="side">
     <div style="display: flex; flex-direction: column">
       @if (showFiller) {
-      <p role="alert" aria-live="polite">Lorem, ipsum dolor sit amet consectetur.</p>
+      <p role="alert" aria-live="polite">
+        Lorem, ipsum dolor sit amet consectetur.
+      </p>
       }
       <button
         id="drawerButton"
@@ -26,12 +28,14 @@
       <div id="mainContent">
         <form [formGroup]="myForm" (ngSubmit)="submitForm()" role="form">
           <div>
-            <label id="name-label" for="name">Name:</label>
+            <!-- aria-label="please insert your name" -->
+            <label aria-label="please insert your name" id="name-label" for="name">Name:</label>
             <input
               type="text"
               id="name"
               autofocus
               formControlName="name"
+              aria-label="please insert your name"
               aria-labelledby="name-label"
             />
             <div
@@ -61,10 +65,10 @@
               id="email-error"
             >
               <!-- role="alert" -->
-              <div class="error" *ngIf="email?.errors?.['required']">
+              <div role="alert" class="error" *ngIf="email?.errors?.['required']">
                 Email is required.
               </div>
-              <div class="error" *ngIf="email?.errors?.['email']">
+              <div role="alert" class="error" *ngIf="email?.errors?.['email']">
                 Invalid email format.
               </div>
             </div>
@@ -75,12 +79,15 @@
             <input
               type="password"
               id="password"
+              aria-required="true"
               formControlName="password"
               aria-labelledby="password-label"
             />
+            <!-- role="alert" -->
             <div
               *ngIf="password?.errors?.['required'] && password?.touched"
               class="error"
+              role="alert"
             >
               Password is required.
             </div>
@@ -101,17 +108,21 @@
             </div>
           </div>
           <div class="action-buttons">
-            <button aria-label="Cancel form submission and go to main page" (click)="router.navigateByUrl('/')">
+            <button
+              aria-label="Cancel form submission and go to main page"
+              (click)="router.navigateByUrl('/')"
+            >
               Cancel
             </button>
-            <button
-              aria-label="Load data"
-              (click)="simulateProgress()"
-            >
+            <button aria-label="Load data" (click)="simulateProgress()">
               Load data
             </button>
             <!-- [disabled]="myForm.invalid" -->
-            <button type="submit" [attr.aria-disabled]="myForm.invalid" [ngClass]="{'disabled-button': myForm.invalid}">
+            <button
+              type="submit"
+              [attr.aria-disabled]="myForm.invalid"
+              [ngClass]="{ 'disabled-button': myForm.invalid }"
+            >
               Submit
             </button>
           </div>
@@ -120,16 +131,18 @@
         <div class="progress-bar-container">
           <!-- [attr.aria-valuenow]="progress" -->
           <!-- role="progressbar" -->
-          <div aria-valuemin="0" aria-valuemax="100" class="progress-bar">
-            <!-- <div class="progress-bar-fill" [style.width.%]="progress">
+          <div class="progress-bar" role="progressbar">
+            <!-- aria-valuemin="0" aria-valuemax="100" -->
+            <div class="progress-bar-fill" [style.width.%]="progress">
               <span class="sr-only">{{ progress }}% Complete</span>
-            </div> -->
-            <progress
+            </div>
+            <!-- <progress
               id="loadinglabel"
               max="100"
+              aria-valuemin="0" aria-valuemax="100"
               [value]="progress"
               [attr.aria-valuenow]="progress"
-            ></progress>
+            ></progress> -->
             <!-- role="progressbar" -->
           </div>
         </div>
@@ -180,3 +193,4 @@
     </div>
   </div>
 </mat-drawer-container>
+
