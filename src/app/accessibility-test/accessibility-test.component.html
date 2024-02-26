@@ -1,8 +1,10 @@
-<section [attr.inert]="isShowingModal ? true : null">
+<section>
   <!-- [attr.inert]="isShowingModal ? true : null" -->
   <h1>Accessibility Demo</h1>
 
   <div class="dog-images">
+    <img src="../../assets/dog.jpg" alt="Image" />
+
     <img src="../../assets/dog.jpg" alt="A happy dog playing in a park" />
   </div>
 
@@ -10,7 +12,6 @@
     <button
       (click)="showDogLoveMessage()"
       aria-label="Show alert"
-      style="border: 2px solid blue"
     >
       Show Alert
     </button>
