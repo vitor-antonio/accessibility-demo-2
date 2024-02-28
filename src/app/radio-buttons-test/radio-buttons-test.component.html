@@ -1,14 +1,31 @@
-<div *ngFor="let option of options" role="radiogroup" class="radio-container">
-  <!-- *ngFor="let option of options" -->
-  <label>
+<div role="radiogroup" class="radio-container">
+  <div>Which is the best food?</div>
+  <div *ngFor="let option of options">
     <input
       type="radio"
+      name="foodoption"
+      [id]="option.value"
       [value]="option.value"
       [checked]="selectedOption === option.value"
       (change)="onOptionChange(option.value)"
-      tabindex="0"
       [attr.aria-checked]="selectedOption === option.value ? 'true' : 'false'"
     />
-    {{ option.label }}
-  </label>
+    <label [for]="option.value">{{ option.label }}</label>
+  </div>
 </div>
+
+<!-- <fieldset>
+  <legend>Which is the best food?</legend>
+  <div *ngFor="let option of options">
+    <input
+      type="radio"
+      name="foodoption"
+      [id]="option.value"
+      [value]="option.value"
+      [checked]="selectedOption === option.value"
+      (change)="onOptionChange(option.value)"
+      [attr.aria-checked]="selectedOption === option.value ? 'true' : 'false'"
+    />
+    <label [for]="option.value">{{ option.label }}</label>
+  </div>
+</fieldset> -->

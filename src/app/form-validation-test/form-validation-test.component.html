@@ -70,7 +70,6 @@
               *ngIf="email?.invalid && (email?.dirty || email?.touched)"
               id="email-error"
             >
-              <!-- role="alert" -->
               <div
                 role="alert"
                 class="error"
@@ -81,7 +80,7 @@
               <div
                 role="alert"
                 class="error"
-                *ngIf="email?.errors?.['email'] && email?.touched"
+                *ngIf="email?.errors?.['email'] && email?.touched && showWrongEmailFormat"
               >
                 Invalid email format.
               </div>
@@ -142,15 +141,16 @@
           </div>
         </form>
 
-        <!-- <div class="progress-bar-container">
-            <progress
-              id="loadinglabel"
-              max="100"
-              aria-valuemin="0" aria-valuemax="100"
-              [value]="progress"
-              [attr.aria-valuenow]="progress"
-            ></progress>
-        </div> -->
+        <div class="progress-bar-container">
+          <progress
+            id="loadinglabel"
+            max="100"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [value]="progress"
+            [attr.aria-valuenow]="progress"
+          ></progress>
+        </div>
 
         <div class="progress-bar-container">
           <!-- [attr.aria-valuenow]="progress" -->
@@ -163,7 +163,7 @@
           >
             <!-- aria-valuemin="0" aria-valuemax="100" -->
             <div class="progress-bar-fill" [style.width.%]="progress">
-              <span class="sr-only">{{ progress }}% Complete</span>
+              <span class="sr-only">{{ progress }}%</span>
             </div>
           </div>
         </div>

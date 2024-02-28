@@ -1,11 +1,6 @@
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
@@ -54,13 +49,24 @@ export class FormValidationTestComponent {
     return this.myForm.get('password');
   }
 
+  showWrongEmailFormat = false;
+
   required: any;
   progress = 0;
 
   constructor(
     public router: Router,
     @Inject(DOCUMENT) public document: Document
-  ) {}
+  ) {
+    // document.addEventListener('focusout', (event) => {
+    //   if (
+    //     event.target instanceof HTMLInputElement &&
+    //     event.target.id == 'email'
+    //   ) {
+    //     this.showWrongEmailFormat = true;
+    //   } else this.showWrongEmailFormat = false;
+    // });
+  }
 
   submitForm() {
     // Handle form submission
@@ -81,10 +87,10 @@ export class FormValidationTestComponent {
   toggleSidePanel(drawer: MatDrawer, drawerButton: HTMLButtonElement) {
     drawer.toggle();
     if (drawer.opened) {
-      // drawerButton.focus();
-      // setTimeout(() => {
-      //   drawerButton.focus();
-      // }, 100);
+      drawerButton.focus();
+      setTimeout(() => {
+        drawerButton.focus();
+      }, 100);
     }
   }
 
