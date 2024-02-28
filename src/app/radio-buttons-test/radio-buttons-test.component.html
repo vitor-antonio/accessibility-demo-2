@@ -1,6 +1,6 @@
-<div role="radiogroup" class="radio-container">
+<div *ngFor="let option of options" role="radiogroup" class="radio-container">
   <!-- *ngFor="let option of options" -->
-  <label *ngFor="let option of options">
+  <label>
     <input
       type="radio"
       [value]="option.value"

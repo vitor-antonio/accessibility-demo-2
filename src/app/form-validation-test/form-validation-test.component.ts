@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   FormBuilder,
   FormControl,
@@ -57,7 +57,10 @@ export class FormValidationTestComponent {
   required: any;
   progress = 0;
 
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    @Inject(DOCUMENT) public document: Document
+  ) {}
 
   submitForm() {
     // Handle form submission
@@ -67,7 +70,7 @@ export class FormValidationTestComponent {
     this.progress = 0;
     const interval = setInterval(() => {
       this.loading = true;
-      this.progress += 10;
+      this.progress += 5;
       if (this.progress === 100) {
         clearInterval(interval);
         this.loading = false;
@@ -78,10 +81,10 @@ export class FormValidationTestComponent {
   toggleSidePanel(drawer: MatDrawer, drawerButton: HTMLButtonElement) {
     drawer.toggle();
     if (drawer.opened) {
-      drawerButton.focus();
-      setTimeout(() => {
-        drawerButton.focus();
-      }, 100);
+      // drawerButton.focus();
+      // setTimeout(() => {
+      //   drawerButton.focus();
+      // }, 100);
     }
   }
 

@@ -29,7 +29,12 @@
         <form [formGroup]="myForm" (ngSubmit)="submitForm()" role="form">
           <div>
             <!-- aria-label="please insert your name" -->
-            <label aria-label="please insert your name" id="name-label" for="name">Name:</label>
+            <label
+              aria-label="please insert your name"
+              id="name-label"
+              for="name"
+              >Name:</label
+            >
             <input
               type="text"
               id="name"
@@ -53,6 +58,7 @@
           <div>
             <label id="email-label" for="email">Email:</label>
             <input
+              #emailInput
               type="email"
               id="email"
               autocomplete="off"
@@ -65,10 +71,18 @@
               id="email-error"
             >
               <!-- role="alert" -->
-              <div role="alert" class="error" *ngIf="email?.errors?.['required']">
+              <div
+                role="alert"
+                class="error"
+                *ngIf="email?.errors?.['required'] && email?.touched"
+              >
                 Email is required.
               </div>
-              <div role="alert" class="error" *ngIf="email?.errors?.['email']">
+              <div
+                role="alert"
+                class="error"
+                *ngIf="email?.errors?.['email'] && email?.touched"
+              >
                 Invalid email format.
               </div>
             </div>
@@ -128,22 +142,29 @@
           </div>
         </form>
 
-        <div class="progress-bar-container">
-          <!-- [attr.aria-valuenow]="progress" -->
-          <!-- role="progressbar" -->
-          <div class="progress-bar" role="progressbar">
-            <!-- aria-valuemin="0" aria-valuemax="100" -->
-            <div class="progress-bar-fill" [style.width.%]="progress">
-              <span class="sr-only">{{ progress }}% Complete</span>
-            </div>
-            <!-- <progress
+        <!-- <div class="progress-bar-container">
+            <progress
               id="loadinglabel"
               max="100"
               aria-valuemin="0" aria-valuemax="100"
               [value]="progress"
               [attr.aria-valuenow]="progress"
-            ></progress> -->
-            <!-- role="progressbar" -->
+            ></progress>
+        </div> -->
+
+        <div class="progress-bar-container">
+          <!-- [attr.aria-valuenow]="progress" -->
+          <!-- role="progressbar" -->
+          <div
+            class="progress-bar"
+            role="progressbar"
+            [attr.aria-valuemin]="0"
+            [attr.aria-valuemax]="100"
+          >
+            <!-- aria-valuemin="0" aria-valuemax="100" -->
+            <div class="progress-bar-fill" [style.width.%]="progress">
+              <span class="sr-only">{{ progress }}% Complete</span>
+            </div>
           </div>
         </div>
 
@@ -178,19 +199,6 @@
           </button>
         </div>
       </div>
-
-      <!-- <div class="side-container">
-        <button aria-label="toggle side panel" (click)="toggleSidePanel()">
-          Toggle Side Panel
-        </button>
-        <div #sidePanelContent id="sidePanelContent" class="content-panel" [ngClass]="{openPanel: sidePanelVisible}">
-          <h2>SidePanel Content</h2>
-          <button aria-label="close side panel" (click)="toggleSidePanel()">
-            Close Side Panel
-          </button>
-        </div>
-      </div> -->
     </div>
   </div>
 </mat-drawer-container>
-
