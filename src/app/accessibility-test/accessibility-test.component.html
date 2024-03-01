@@ -1,4 +1,4 @@
-<section>
+<section [attr.inert]="isShowingModal ? true : null">
   <!-- [attr.inert]="isShowingModal ? true : null" -->
   <h1>Accessibility Demo</h1>
 
@@ -15,8 +15,8 @@
     >
       Show Alert
     </button>
-    <div class="fake-button" (click)="showDogLoveMessage()">Show Alert</div>
-    <!-- tabindex="0" -->
+    <div class="fake-button" tabindex="0" (click)="showDogLoveMessage()">Show Alert</div>
+    <!--  -->
   </div>
 
   <div>

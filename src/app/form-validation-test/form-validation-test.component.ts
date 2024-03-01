@@ -49,7 +49,7 @@ export class FormValidationTestComponent {
     return this.myForm.get('password');
   }
 
-  showWrongEmailFormat = false;
+  showEmailAlerts = false;
 
   required: any;
   progress = 0;
@@ -58,14 +58,15 @@ export class FormValidationTestComponent {
     public router: Router,
     @Inject(DOCUMENT) public document: Document
   ) {
-    // document.addEventListener('focusout', (event) => {
-    //   if (
-    //     event.target instanceof HTMLInputElement &&
-    //     event.target.id == 'email'
-    //   ) {
-    //     this.showWrongEmailFormat = true;
-    //   } else this.showWrongEmailFormat = false;
-    // });
+    document.addEventListener('focusout', (event) => {
+      this.showEmailAlerts = false;
+      if (
+        event.target instanceof HTMLInputElement &&
+        event.target.id == 'email'
+      ) {
+        this.showEmailAlerts = true;
+      }
+    });
   }
 
   submitForm() {

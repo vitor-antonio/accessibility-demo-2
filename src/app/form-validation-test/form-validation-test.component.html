@@ -80,7 +80,7 @@
               <div
                 role="alert"
                 class="error"
-                *ngIf="email?.errors?.['email'] && email?.touched && showWrongEmailFormat"
+                *ngIf="email?.errors?.['email'] && email?.touched && this.showEmailAlerts"
               >
                 Invalid email format.
               </div>
@@ -158,8 +158,9 @@
           <div
             class="progress-bar"
             role="progressbar"
-            [attr.aria-valuemin]="0"
-            [attr.aria-valuemax]="100"
+            [attr.aria-valuenow]="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
           >
             <!-- aria-valuemin="0" aria-valuemax="100" -->
             <div class="progress-bar-fill" [style.width.%]="progress">
